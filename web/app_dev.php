@@ -20,6 +20,15 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 Debug::enable();
 
+require_once __DIR__.'/../app/DemoAspectKernel.php';
+
+// Initialize an aspect container
+$aspectKernel = DemoAspectKernel::getInstance();
+$aspectKernel->init(array(
+    'cacheDir' => __DIR__ .'/../app/cache/aspect',
+    'debug' => true,
+));
+
 require_once __DIR__.'/../app/AppKernel.php';
 
 $kernel = new AppKernel('dev', true);
